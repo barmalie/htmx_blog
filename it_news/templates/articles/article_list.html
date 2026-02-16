@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Статьи{% endblock %}
+
+{% block content %}
+<h1>Новости IT</h1>
+
+<!-- Фильтр по компаниям -->
+{% include "includes/filter_form.html" %}
+
+<div id="article-list">
+    {% include "includes/article_cards.html" with articles=page_obj %}
+</div>
+
+{% if page_obj.has_next %}
+    <div hx-get="?page={{ page_obj.next_page_number }}"
+         hx-trigger="revealed"
+         hx-target="#article-list"
+         hx-swap="beforeend"
+         hx-indicator=".htmx-indicator">
+        <div class="htmx-indicator">Загрузка...</div>
+    </div>
+{% endif %}
+{% endblock %}

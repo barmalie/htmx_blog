@@ -1,0 +1,16 @@
+{% for article in articles %}
+<div class="article-card" id="article-{{ article.id }}">
+    <h2><a href="{{ article.get_absolute_url }}" hx-boost="true">{{ article.title }}</a></h2>
+    <p>{{ article.summary }}</p>
+    <small>{{ article.company.name }} | {{ article.created_at|date:"d.m.Y" }}</small>
+    <button hx-post="{% url 'like-article' article.id %}"
+            hx-target="#like-section-{{ article.id }}"
+            hx-swap="outerHTML"
+            hx-indicator="#like-indicator-{{ article.id }}">
+        Лайк (<span class="likes-count">{{ article.likes_count }}</span>)
+    </button>
+    <div id="like-indicator-{{ article.id }}" class="htmx-indicator">⏳</div>
+</div>
+{% empty %}
+<p>Нет статей</p>
+{% endfor %}

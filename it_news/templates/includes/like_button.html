@@ -1,0 +1,7 @@
+<button hx-post="{% url 'like-article' article.id %}"
+        hx-target="#like-section-{{ article.id }}"
+        hx-swap="outerHTML"
+        hx-indicator="#like-indicator-{{ article.id }}">
+    Лайк (<span class="likes-count">{{ article.likes_count }}</span>)
+</button>
+<div id="like-indicator-{{ article.id }}" class="htmx-indicator">⏳</div>

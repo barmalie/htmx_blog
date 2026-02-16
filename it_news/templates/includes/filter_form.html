@@ -1,0 +1,10 @@
+<form hx-get="{% url 'article-list' %}"
+      hx-target="#article-list"
+      hx-trigger="change">
+    <select name="company">
+        <option value="">Все компании</option>
+        {% for company in view.companies %}
+        <option value="{{ company.id }}">{{ company.name }}</option>
+        {% endfor %}
+    </select>
+</form>
