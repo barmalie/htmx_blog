@@ -1,12 +1,12 @@
-from django.db import models as ms
+from django.db import models 
 from django.urls import reverse
 
-class Company(ms.Model):
-    name = ms.CharField(max_length=100, db_index=True)
-    slug = ms.SlugField(unique=True)
-    description = ms.TextField(blank=True)
-    website = ms.URLField(blank=True)
-    created_at = ms.DateTimeField(auto_now_add=True)
+class Company(models.Model):
+    name = models.CharField(max_length=100, db_index=True)
+    slug = models.SlugField(unique=True)
+    description = models.TextField(blank=True)
+    website = models.URLField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ['name']
